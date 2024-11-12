@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+    
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            font-size: 2rem;
+            width: 100%;
+            max-width: 500px;
+        }
+
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        
+        button {
+            font-size: 1.2rem;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 120px;
+            height: 120px;
+        }
+
+        button:hover {
+            background-color: #081b31;
+            transform: scale(1.1);
+        }
+
+        button:active {
+            background-color: #ccc;
+            transform: scale(0.95);
+        }
+
+        
+        .rock { 
+            background: url(rock.png) no-repeat center/cover;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+        .paper {
+            background: url(paper.png) no-repeat center/cover;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+        .scissors {
+            background: url(scissors.png) no-repeat center/cover;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+        
+        #result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            width: 60%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        
+         @media (max-width: 600px) {
+            #result {
+                width: 90%;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            button {
+                width: 100px;
+                height: 100px;
+            }
+         } 
+    </style>
+</head>
+<body>
+    <h1>Rock, Paper, Scissors</h1>
+
+    
+    <div class="buttons">
+        <button class="rock" onclick="play('rock')"></button>
+        <button class="paper" onclick="play('paper')"></button>
+        <button class="scissors" onclick="play('scissors')"></button>
+    </div>
+
+    
+    <div id="result">Choose an option above to play!</div>
+
+    <script>
+        
+        function play(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+
+            
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            
+            let result;
+            switch (playerChoice) {
+                case 'rock':
+                    if (computerChoice === 'rock') {
+                        result = `It's a tie! Both chose ${playerChoice}.`;
+                    } else if (computerChoice === 'scissors') {
+                        result = `You win! ${playerChoice} beats ${computerChoice}.`;
+                    } else {  
+                        result = `You lose! ${computerChoice} beats ${playerChoice}.`;
+                    }
+                    break;
+
+                case 'paper':
+                    if (computerChoice === 'paper') {
+                        result = `It's a tie! Both chose ${playerChoice}.`;
+                    } else if (computerChoice === 'rock') {
+                        result = `You win! ${playerChoice} beats ${computerChoice}.`;
+                    } else { 
+                        result = `You lose! ${computerChoice} beats ${playerChoice}.`;
+                    }
+                    break;
+
+                case 'scissors':
+                    if (computerChoice === 'scissors') {
+                        result = `It's a tie! Both chose ${playerChoice}.`;
+                    } else if (computerChoice === 'paper') {
+                        result = `You win! ${playerChoice} beats ${computerChoice}.`;
+                    } else {
+                        result = `You lose! ${computerChoice} beats ${playerChoice}.`;
+                    }
+                    break;
+            }
+
+            // Display the result
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+</html>
+
